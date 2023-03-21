@@ -21,5 +21,5 @@ Data
 
 Code
 1) The mothod to learn how consumer electricity behaviour varies with temperature (prectict_load.m)
-2) Risk assessment method (main_1951_2099.m)
+2) Risk assessment method (main.m)
 3) The method of calculating the Jacobi matrix required to calculate the SOB (CalculateJacobian.m)
