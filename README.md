@@ -13,7 +13,7 @@ Data
 
 3) Distribution grid data (case33bw.m)
    
-   In the paper, we used real distribution network data, but due to NDA restrictions we cannot make the data publicly available. So we demonstrated the calculation process using IEEE-33 as an example. The data based on the 33 nodes was created by adding noise to real data in order to show similar patterns to the real data.
+   In the paper, we used real distribution network data, but due to NDA restrictions we cannot make the data publicly available. So we demonstrated the calculation process using IEEE-33 as an example. We distributed fitted load temperature curves over the IEEE-33 case so that our code can be verified.
    
 4) Hourly temperature data corresponding to the geo-location where the power consumption data is retrieved. (historical_temperature.mat)
 
