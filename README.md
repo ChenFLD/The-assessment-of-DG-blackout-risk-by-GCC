@@ -1,4 +1,4 @@
-# The-assessment-of-DG-s-blackout-risk-by-GCC
+# The-assessment-of-DG-blackout-risk-by-GCC
 
 We provide the code and data relevant to the quality and nature of the data that is used to assess the system risk in the paper Vulnerability and Adaptation of Power Grids for Global Warming Induced Electricity Demands. 
 
@@ -20,6 +20,6 @@ Data
 5) Predicted load data between 1951-2100 for users at 33 nodes projected from the fitted load temperature curves and climate prediction data. (load_1951_2100_org.mat)
 
 Code
-1) The mothod to learn how consumer electricity behaviour varies with temperature (prectict_load.m)
+1) The method to learn how consumer electricity behavior varies with temperature (prectict_load.m)
 2) Risk assessment method (main.m)
 3) The method of calculating the Jacobi matrix required to calculate the SOB (CalculateJacobian.m)
