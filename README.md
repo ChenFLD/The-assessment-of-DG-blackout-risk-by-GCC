@@ -1,6 +1,6 @@
 # The-assessment-of-DG-blackout-risk-by-GCC
 
-We provide the code and data relevant to the quality and nature of the data that is used to assess the system risk in the paper Vulnerability and Adaptation of Power Grids for Global Warming Induced Electricity Demands. 
+We provide the code and data relevant to the quality and nature of the data that is used to assess the system risk in the paper Assessment of Global Climate Change’s Impact on Electricity Distribution Service. 
 
 Data
 1) Climate prediction data from USGS NCCV database (US06037_MeanModel_english.csv)
