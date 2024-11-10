@@ -76,8 +76,9 @@ main
 
 ### Using Custom Prediction Data:
 
-- Replace `historical_temperature.mat`, `US06037_MeanModel_english.csv`, and `fitted_curve.mat` in the `/data` folder with your own climate or load prediction data.
-- Run `predict_load.m` in `/src` to generate future load predictions similar to `load_1951_2100_org.mat`. This script will save the predictions in a `.mat` file.
+- Replace `historical_temperature.mat` in the `/data` folder with your own historical electricity load data (due to NDA restrictions, we cannot disclose specific data; users can substitute their own data).
+- Run `predict_load.m` in `/src` to perform step 1 and 2, generating `fitted_curve.mat` based on the historical temperature and load data.
+- Replace `US06037_MeanModel_english.csv` with your own climate prediction data and use the generated `fitted_curve.mat` to produce future load predictions `load_1951_2100_org.mat`. This script will save the predictions in a `.mat` file.
 
 ```matlab
 predict_load
@@ -86,12 +87,10 @@ predict_load
 - Rerun the `main.m` script following the same steps as in the demo to assess collapse risk with the new load data.
 - Adjust any necessary parameters in `main.m` or `CalculateJacobian.m` to accommodate the new configuration.
 
-## Reproduction Instructions
-
-To reproduce the results from the associated manuscript, use the provided files in `/data` without modification. The demo in `/demo` includes `main.m`, `CalculateJacobian.m`, `case33bw.m`, and `load_1951_2100_org.mat`, which are sufficient to reproduce the annual collapse risk assessment for the IEEE-33 bus system.
 
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.
+
 
 
