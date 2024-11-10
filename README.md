@@ -39,5 +39,5 @@ The `/data` folder includes files necessary to demonstrate the code’s capabili
    - Follow the [MATPOWER installation instructions](https://matpower.org/docs/MATPOWER-manual.pdf).
 2. Clone this repository and add it to your MATLAB path:
    ```bash
-   git clone https://github.com/YourUsername/ProjectName.git
-Estimated Installation Time: ~10 minutes
+   git clone [https://github.com/ChenFLD/The-assessment-of-DG-blackout-risk-by-GCC/tree/version2]
+Estimated Installation Time: ~5 minutes
