@@ -1,6 +1,47 @@
 %% To run this program successfully you need to comment out steps 2) and 3).
 
-%% 1) Create a different climate change scenario for risk comparison results.
+%% 1) input historical temperature and electricity load
+% The local DG system data is sensitive information regarding the infrastructure security of 
+% the urban area and is subject to the non-disclosure agreement (NDA).
+% We can not disclose all utility's load curve. Here, 'p_bundle' can not be loaded. 
+% But we will disclose the fitted curves for electricity load and temperature for 10 utilities.
+numcom=33;
+for i=1:364
+    for h=1:24
+    temp_data(i,h)=temperature_data_mat(i,h);
+%     temp_data(i,2)=convtemp(min(temperature_data_mat(i,:)),'F','C');
+%     temp_data(i,3)=convtemp(mean(temperature_data_mat(i,:)),'F','C');
+    end
+    for j=1:numcom
+        for h=1:24
+            load_original{i,1}(j,h)=p_bundle{h,1}(i,j);
+            load_data{h,1}(i,j)=load_original{i,1}(j,h);
+        end
+%             load_data{2,1}(i,j)=min(load_original{i,1}(j,:));
+%             load_data{3,1}(i,j)=mean(load_original{i,1}(j,:));
+    end
+end
+
+%% 2) Let us create poly model that can extrapolate the user behaviour to different climate change values.
+    
+%     ML_fit_data = cell(24,1);
+%    figure 
+    for bus_j = 1:33 % 123 buses
+        for h = 1:length(load_data) % max,min,mean
+%        ML_fit_data{h,1} = {};
+            x = temp_data(:,h);
+            y = load_data{h,1}(:,bus_j);
+            [p,S] = polyfit(x,y,2);
+            
+            % Save the ML fit variables for each hour and consumer.
+            ML_fit_data{h,1}{bus_j,1} = cell(2,1);
+            ML_fit_data{h,1}{bus_j,1}{1,1} = p;
+            ML_fit_data{h,1}{bus_j,1}{2,1} = S;
+        end
+    end
+    
+
+%% 3) Create a different climate change scenario for risk comparison results.
 clear
 tic
 
@@ -53,46 +94,6 @@ for year=1:150
         end
         end
 end
-%% 2) input historical temperature and electricity load
-% The local DG system data is sensitive information regarding the infrastructure security of 
-% the urban area and is subject to the non-disclosure agreement (NDA).
-% We can not disclose all utility's load curve. Here, 'p_bundle' can not be loaded. 
-% But we will disclose the fitted curves for electricity load and temperature for 10 utilities.
-numcom=33;
-for i=1:364
-    for h=1:24
-    temp_data(i,h)=temperature_data_mat(i,h);
-%     temp_data(i,2)=convtemp(min(temperature_data_mat(i,:)),'F','C');
-%     temp_data(i,3)=convtemp(mean(temperature_data_mat(i,:)),'F','C');
-    end
-    for j=1:numcom
-        for h=1:24
-            load_original{i,1}(j,h)=p_bundle{h,1}(i,j);
-            load_data{h,1}(i,j)=load_original{i,1}(j,h);
-        end
-%             load_data{2,1}(i,j)=min(load_original{i,1}(j,:));
-%             load_data{3,1}(i,j)=mean(load_original{i,1}(j,:));
-    end
-end
-
-%% 3) Let us create poly model that can extrapolate the user behaviour to different climate change values.
-    
-%     ML_fit_data = cell(24,1);
-%    figure 
-    for bus_j = 1:33 % 123 buses
-        for h = 1:length(load_data) % max,min,mean
-%        ML_fit_data{h,1} = {};
-            x = temp_data(:,h);
-            y = load_data{h,1}(:,bus_j);
-            [p,S] = polyfit(x,y,2);
-            
-            % Save the ML fit variables for each hour and consumer.
-            ML_fit_data{h,1}{bus_j,1} = cell(2,1);
-            ML_fit_data{h,1}{bus_j,1}{1,1} = p;
-            ML_fit_data{h,1}{bus_j,1}{2,1} = S;
-        end
-    end
-    
 
     %% 4) Let us predict the consumer load behavior for future climate change scenarios.
     
