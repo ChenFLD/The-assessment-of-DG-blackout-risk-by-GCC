@@ -1,25 +1,43 @@
-# The-assessment-of-DG-blackout-risk-by-GCC
+# Assessment of Global Climate Change’s Impact on Electricity Distribution Service
 
-We provide the code and data relevant to the quality and nature of the data that is used to assess the system risk in the paper Assessment of Global Climate Change’s Impact on Electricity Distribution Service. 
+This repository provides the MATLAB source code and a sample dataset for assessing power distribution system collapse risk under projected climate scenarios. The provided data and code simulate the assessment methods detailed in the accompanying paper.
 
-Data
-1) Climate prediction data from USGS NCCV database (US06037_MeanModel_english.csv)
+## Project Structure
 
-   (https://www.usgs.gov/tools/national-climate-change-viewer-nccv) 
+- `/src`: Contains all source code files necessary to run the assessment.
+- `/data`: Contains a sample dataset for demonstration purposes, enabling users to test the code functionality without requiring external data.
 
-2) The fitted curves for hourly electricity load and temperature for 10 utilities.  (fitted_curve.mat)
-   
-   The local DG system data is sensitive information regarding the infrastructure security of the urban area and is subject to the non-disclosure agreement (NDA). We can not disclose all utility's hourly power consumption data. But we can disclose the fitted curves for electricity load and temperature for 10 utilities. They are then randomly distributed over the 33 nodes. These utilities were selected based on their availability and their representation of the overall load and temperature characteristics of the region. By providing the fitted curves for multiple utilities, we aimed to capture the variability in load and temperature patterns across the region. This information can be useful for operating power systems that are resilient to climate variability and change.
+## Source Code
 
-3) Distribution grid data (case33bw.m)
-   
-   In the paper, we used real distribution network data, but due to NDA restrictions we cannot make the data publicly available. So we demonstrated the calculation process using IEEE-33 as an example. We distributed fitted load temperature curves over the IEEE-33 case so that our code can be verified.
-   
-4) Hourly temperature data corresponding to the geo-location where the power consumption data is retrieved. (historical_temperature.mat)
+The `/src` folder includes the following key scripts:
 
-5) Predicted load data between 1951-2100 for users at 33 nodes projected from the fitted load temperature curves and climate prediction data. (load_1951_2100_org.mat)
+- **`predict_load.m`**: Predicts future electricity load based on temperature data. This script outputs a `.mat` file with predicted loads, which can be used in subsequent risk calculations.
+- **`main.m`**: Calculates annual collapse risk for a power distribution network using the predicted load data and network configurations.
+- **`CalculateJacobian.m`**: Computes the Jacobian matrix required to evaluate grid stability boundaries (SOB). This function supports input of different grid architectures.
 
-Code
-1) The method to learn how consumer electricity behavior varies with temperature (prectict_load.m)
-2) Risk assessment method (main.m)
-3) The method of calculating the Jacobi matrix required to calculate the SOB (CalculateJacobian.m)
+## Sample Dataset
+
+The `/data` folder includes files necessary to demonstrate the code’s capabilities:
+
+- **`US06037_MeanModel_english.csv`**: Climate prediction data from the USGS NCCV database.
+- **`fitted_curve.mat`**: Fitted curves representing hourly electricity load and temperature data for 10 utilities, used to simulate load variability.
+- **`case33bw.m`**: IEEE-33 bus system configuration used in the demo. This can be replaced with other configurations for different network architectures.
+- **`historical_temperature.mat`**: Historical temperature data for the region of interest.
+- **`load_1951_2100_org.mat`**: Projected load data for each of the 33 nodes from 1951 to 2100, based on climate projections.
+
+## System Requirements
+
+- **MATLAB Version**: R2021a or later
+- **Dependencies**:
+  - [CVX](http://cvxr.com/cvx/) for optimization
+  - [MATPOWER](https://matpower.org/) for power flow analysis
+
+## Installation Guide
+
+1. Install MATLAB and required dependencies:
+   - Follow the [CVX installation guide](http://cvxr.com/cvx/doc/install.html).
+   - Follow the [MATPOWER installation instructions](https://matpower.org/docs/MATPOWER-manual.pdf).
+2. Clone this repository and add it to your MATLAB path:
+   ```bash
+   git clone https://github.com/YourUsername/ProjectName.git
+Estimated Installation Time: ~10 minutes
